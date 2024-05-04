@@ -1,8 +1,6 @@
 import React from "react";
 import { Button, View, Text, ScrollView, Dropdown } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import Table from "../../turHadgalah.js/table";
-// import { PickerSelect } from "react-native-picker-select";
 
 export default function Profile({ navigation }) {
   return (
@@ -14,9 +12,7 @@ export default function Profile({ navigation }) {
           alignItems: "center",
         }}
       >
-        <Text>testtsetsftfst</Text>
-
-        {/* <Table></Table> */}
+        <Text>Profile</Text>
       </View>
     </View>
   );

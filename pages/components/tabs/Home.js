@@ -6,11 +6,18 @@ import {
   ScrollView,
   StyleSheet,
   FlatList,
+  Platform,
   Image,
 } from "react-native";
 import { SearchBar } from "react-native-elements";
-// import noImg from "../assets/noImg.jpg";
-import noImg from "../../../assets/noImg.jpg"
+import noImg from "../../../assets/noImg.jpg";
+import mobileImg from "../../../assets/mobileImg.webp";
+import cnImg from "../../../assets/cnImg.jpg";
+import aiImg from "../../../assets/aiImg.jpeg";
+import statisImg from "../../../assets/statatisImg.jpg";
+
+import news1Img from "../../../assets/news1.jpg";
+import news2Img from "../../../assets/newsImg2.jpg";
 
 export default function Home({ navigation }) {
   const [search, setSearch] = useState("");
@@ -20,7 +27,7 @@ export default function Home({ navigation }) {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+    <View style={{ flex: 1, backgroundColor: "#f5f5f5" }}>
       <View
         style={{
           flex: 1,
@@ -28,12 +35,20 @@ export default function Home({ navigation }) {
           alignItems: "center",
         }}
       >
-        <SearchBar
-          placeholder="Хайх..."
-          onChangeText={updateSearch}
-          platform="android"
-          value={search}
-        />
+        <View
+          style={{
+            borderBottomColor: "#000",
+            borderBottomWidth: 1,
+            width: "100%",
+          }}
+        >
+          {/* <SearchBar
+            placeholder="Хайх..."
+            onChangeText={updateSearch}
+            platform="android"
+            value={search}
+          /> */}
+        </View>
         <View
           style={{
             flex: 1,
@@ -51,30 +66,39 @@ export default function Home({ navigation }) {
                 <View style={{ flexDirection: "row", marginTop: 10, gap: 10 }}>
                   <View>
                     <Image
-                      source={noImg}
+                      source={mobileImg}
                       style={styles.img}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Хичээл нэр</Text>
-                    <Text style={styles.teacherName}>Багш нэр</Text>
+                    <Text style={styles.lessonName}>Мобайл програмчлал</Text>
+                    <Text style={styles.teacherName}>Ц.Солонгоо</Text>
                   </View>
                   <View>
                     <Image
-                      source={noImg}
+                      source={cnImg}
                       style={styles.img}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Хичээл нэр</Text>
-                    <Text style={styles.teacherName}>Багш нэр</Text>
+                    <Text style={styles.lessonName}>Компьютерийн сүлжээ</Text>
+                    <Text style={styles.teacherName}>T.Гансүх</Text>
                   </View>
                   <View>
                     <Image
-                      source={noImg}
+                      source={statisImg}
                       style={styles.img}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Хичээл нэр</Text>
-                    <Text style={styles.teacherName}>Багш нэр</Text>
+                    <Text style={styles.lessonName}>Магадлал ба статистик</Text>
+                    <Text style={styles.teacherName}>Б.Санчир</Text>
+                  </View>
+                  <View>
+                    <Image
+                      source={aiImg}
+                      style={styles.img}
+                      resizeMode="cover"
+                    />
+                    <Text style={styles.lessonName}>Хиймэл оюун ухаан</Text>
+                    <Text style={styles.teacherName}>Н.Анхбаяр</Text>
                   </View>
                 </View>
               </ScrollView>
@@ -86,31 +110,35 @@ export default function Home({ navigation }) {
               <ScrollView horizontal>
                 <View style={{ flexDirection: "row", marginTop: 10, gap: 10 }}>
                   <View>
+                    <Text style={styles.newsTitle}>
+                      Улаан загалмай нийгэмлэгийн танилцуулга
+                    </Text>
+
                     <Image
-                      source={noImg}
-                      style={styles.img}
+                      source={news1Img}
+                      style={styles.newsImg}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Гарчиг</Text>
-                    <Text style={styles.teacherName}>Товч мэдээлэл</Text>
                   </View>
                   <View>
+                    <Text style={styles.newsTitle}>
+                      Рийлс богино хэмжээний видео контент бүтээх уралдаан
+                    </Text>
+
                     <Image
-                      source={noImg}
-                      style={styles.img}
+                      source={news2Img}
+                      style={styles.newsImg}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Гарчиг</Text>
-                    <Text style={styles.teacherName}>Товч мэдээлэл</Text>
                   </View>
                   <View>
+                    <Text style={styles.newsTitle}>Гарчиг</Text>
+
                     <Image
                       source={noImg}
-                      style={styles.img}
+                      style={styles.newsImg}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Гарчиг</Text>
-                    <Text style={styles.teacherName}>Товч мэдээлэл</Text>
                   </View>
                 </View>
               </ScrollView>
@@ -122,73 +150,61 @@ export default function Home({ navigation }) {
               <ScrollView horizontal>
                 <View style={{ flexDirection: "row", marginTop: 10, gap: 10 }}>
                   <View>
+                    <Text style={styles.lessonName}>Гарчиг</Text>
                     <Image
                       source={noImg}
                       style={styles.img}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Гарчиг</Text>
-                    <Text style={styles.teacherName}>Товч мэдээлэл</Text>
                   </View>
                   <View>
+                    <Text style={styles.lessonName}>Гарчиг</Text>
                     <Image
                       source={noImg}
                       style={styles.img}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Гарчиг</Text>
-                    <Text style={styles.teacherName}>Товч мэдээлэл</Text>
                   </View>
                   <View>
+                    <Text style={styles.lessonName}>Гарчиг</Text>
                     <Image
                       source={noImg}
                       style={styles.img}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Гарчиг</Text>
-                    <Text style={styles.teacherName}>Товч мэдээлэл</Text>
                   </View>
                 </View>
               </ScrollView>
             </View>
             <View style={styles.container}>
               <View>
-                <Text style={styles.customTextStyle}>Арга хэмжээ</Text>
+                <Text style={styles.customTextStyle}>Тэтгэлэг</Text>
               </View>
-              <ScrollView horizontal style={{}}>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    marginTop: 10,
-                    gap: 20,
-                  }}
-                >
+              <ScrollView horizontal>
+                <View style={{ flexDirection: "row", marginTop: 10, gap: 10 }}>
                   <View>
+                    <Text style={styles.lessonName}>Гарчиг</Text>
                     <Image
                       source={noImg}
                       style={styles.img}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Гарчиг</Text>
-                    <Text style={styles.teacherName}>Товч мэдээлэл</Text>
                   </View>
                   <View>
+                    <Text style={styles.lessonName}>Гарчиг</Text>
                     <Image
                       source={noImg}
                       style={styles.img}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Гарчиг</Text>
-                    <Text style={styles.teacherName}>Товч мэдээлэл</Text>
                   </View>
                   <View>
+                    <Text style={styles.lessonName}>Гарчиг</Text>
                     <Image
                       source={noImg}
                       style={styles.img}
                       resizeMode="cover"
                     />
-                    <Text style={styles.lessonName}>Гарчиг</Text>
-                    <Text style={styles.teacherName}>Товч мэдээлэл</Text>
                   </View>
                 </View>
               </ScrollView>
@@ -207,9 +223,23 @@ const styles = StyleSheet.create({
   img: {
     width: 180,
     height: 120,
-    borderColor: "#000",
-    borderWidth: 1,
+    // borderColor: "#000",
+    // borderWidth: 1,
     borderRadius: 10,
+  },
+  newsImg: {
+    width: 360,
+    height: 240,
+    borderRadius: 20,
+    marginRight: 10,
+  },
+  newsTitle: {
+    width: 360,
+    height: 50,
+    fontSize: 16,
+    fontWeight: "600",
+    flexWrap: "wrap",
+    textAlign: "left",
   },
   lessonName: { fontSize: 17 },
   teacherName: { fontSize: 15 },
