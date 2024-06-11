@@ -15,24 +15,24 @@ import { TabView, TabBar } from "react-native-paper";
 
 import { Ionicons } from "@expo/vector-icons";
 
-import Main from "./pages/components/tabs/Home";
+import Main from "./pages/tabs/Home";
 import Login from "./pages/Login";
-import Settings from "./pages/components/tabs/Schedule";
-import LessonTab from "./pages/components/tabs/LessonTab";
-import Profile from "./pages/components/tabs/Profile";
+import Settings from "./pages/tabs/Schedule";
+import LessonTab from "./pages/tabs/LessonTab";
+import Profile from "./pages/tabs/Profile";
 
-import Performance from "./pages/components/topTabs/Performance";
-import LessonMaterial from "./pages/components/topTabs/LessonMaterial";
+import Performance from "./pages/topTabs/Performance";
+import LessonMaterial from "./pages/topTabs/LessonMaterial";
 
-import Lecture from "./pages/components/lessonType/Lecture";
-import Homework from "./pages/components/lessonType/Homework";
-import Seminar from "./pages/components/lessonType/Seminar";
+import Lecture from "./pages/lessonType/Lecture";
+import Homework from "./pages/lessonType/Homework";
+import Seminar from "./pages/lessonType/Seminar";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const TopTab = createMaterialTopTabNavigator();
 
-let username = "Баяржавхлан";
+let username = " Б. Баяржавхлан";
 let lessonName = "Хиймэл оюун ухаан";
 
 function LessonMaterialFilter() {}
@@ -40,7 +40,7 @@ const App = () => {
   return (
     <NavigationContainer>
       {
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
             name="Login"
             component={Login}

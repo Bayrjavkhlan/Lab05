@@ -16,8 +16,8 @@ import { useState } from "react";
 import { Divider } from "react-native-paper";
 import { FileIcon } from "react-file-icon";
 
-const appLayerImg1 = require("../../../assets/applicationLayer.jpg");
-const appLayerImg = require("../../../assets/applicationLayer.jpg");
+const appLayerImg1 = require("../../assets/applicationLayer.jpg");
+const appLayerImg = require("../../assets/applicationLayer.jpg");
 const images = [
   {
     uri: appLayerImg1,
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   pdfText: { color: "white" },
-  Divider: { marginVertical: 10 },
+  Divider: { marginVertical: 10, backgroundColor: "#000", borderWidth: 0.19 },
   redDivider: {
     marginVertical: 10,
     height: 1,

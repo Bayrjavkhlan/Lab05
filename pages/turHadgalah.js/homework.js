@@ -15,12 +15,69 @@ import { useState } from "react";
 import { Divider } from "react-native-paper";
 import { FileIcon } from "react-file-icon";
 
-const zipImage = "/LMS/assets/zipIconImg.jpg";
 const hexImage = "/LMS/assets/hexEditorImg.png";
+const emptyState = require("../../assets/emptyState.jpg");
+const profileImg = require("../../assets/profileImg.jpg");
 
-const profileImg = require("../../../assets/profileImg.jpg");
+export default function Homework({ route }) {
+  const { homeWorkName } = route.params;
 
-export default function Homework() {
+  const homeworkData = [
+    {
+      teacherName: "М. Отгонпүрэв",
+      assignmentName: "Даалгавар1",
+      assignmentInstructions: [
+        "Хавсралт дахь HxDSetup.zip програмыг суулгана",
+        "Хавсралт дахь hh2.golden.exe файлыг HxD Hex Editor-оор шинжилж статик текстүүдийг олно",
+        "hh2.golden.exe програм нь хэрэв хортой код байсан бол уг хортой кодыг таних ямар ямар signature үүсгэж болохыг тодорхойлон тайлбар бичиж Classroom-д оруулна",
+      ],
+      attachments: [
+        {
+          name: "hh2.golden.exe",
+          downloadLink: "http://example.com/hh2.golden.exe",
+        },
+        {
+          name: "HxDSetup.zip",
+          downloadLink: "http://example.com/HxDSetup.zip",
+        },
+        {
+          name: "Зураг.jpeg",
+          downloadLink: "http://example.com/зураг.jpeg",
+        },
+        {
+          name: "Зураг.jpeg",
+          downloadLink: "http://example.com/зураг.jpeg",
+        },
+      ],
+      points: 100,
+    },
+    {
+      teacherName: "Another Teacher",
+      assignmentName: "Даалгавар2",
+      assignmentInstructions: [
+        "Instruction A",
+        "Instruction B",
+        "Instruction C",
+      ],
+      attachments: [],
+      points: 75,
+    },
+    {
+      teacherName: "Another Teacher",
+      assignmentName: "Даалгавар3",
+      assignmentInstructions: [
+        "Instruction A",
+        "Instruction B",
+        "Instruction C",
+      ],
+      attachments: [],
+      points: 75,
+    },
+  ];
+
+  const matchingHomework = homeworkData.find(
+    (homework) => homework.assignmentName === homeWorkName
+  );
   const [input, setInput] = useState("");
   const [enteredTexts, setEnteredTexts] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -37,47 +94,50 @@ export default function Homework() {
     setEnteredTexts(newEnteredTexts);
   };
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff", paddingHorizontal: 13 }}>
-      <View style={styles.topContainer}>
-        <View style={styles.teacherContainer}>
-          <View style={styles.circle}>
-            <Ionicons name="person" size={25} color={"#fff"} />
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "#fff",
+        paddingHorizontal: 13,
+        justifyContent: "space-between",
+      }}
+    >
+      <View style={{ flex: 1, marginBottom: 70 }}>
+        <View style={styles.topContainer}>
+          <View style={styles.teacherContainer}>
+            <View style={styles.circle}>
+              <Ionicons name="person" size={25} color={"#fff"} />
+            </View>
+            <View style={styles.assignmentNameContainer}>
+              <Text style={styles.teacherName}>
+                {matchingHomework.teacherName}
+              </Text>
+              <Text style={styles.assignmentDate}>5-р сар 1 12:00</Text>
+            </View>
           </View>
-          <View style={styles.assignmentNameContainer}>
-            <Text style={styles.teacherName}>{`М. Отгонпүрэв`}</Text>
-            {/* <Text style={styles.assignmentDate}>{`4-р сар 18  17:39`}</Text> */}
-            <Text style={styles.assignmentDate}>5-р сар 1 12:00</Text>
+          <View style={styles.pointContainer}>
+            <Text style={styles.point}>Оноо: {matchingHomework.points}</Text>
           </View>
         </View>
-        <View style={styles.pointContainer}>
-          <Text style={styles.point}>Оноо: 100</Text>
-        </View>
-      </View>
-      <View>
-        <Text style={styles.assignmentName}>Хортой код</Text>
-        <Text>1. Хавсралт дахь HxDSetup.zip програмыг суулгана</Text>
-        <Text>
-          2. Хавсралт дахь hh2.golden.exe файлыг HxD Hex Editor-оор шинжилж
-          статик текстүүдийг олно
-        </Text>
-        <Text>
-          3. hh2.golden.exe програм нь хэрэв хортой код байсан бол уг хортой
-          кодыг таних ямар ямар signature үүсгэж болохыг тодорхойлон тайлбар
-          бичиж Classroom-д оруулна
-        </Text>
-      </View>
-      <Divider style={styles.Divider} />
-      <ScrollView>
         <View>
-          <TouchableOpacity onPress={() => setIsExpanded(!isExpanded)}>
-            <Text style={styles.attachmentTitle}>Хавсралт</Text>
-          </TouchableOpacity>
+          <Text style={styles.assignmentName}>
+            {matchingHomework.assignmentName}
+          </Text>
+          {matchingHomework.assignmentInstructions.map((instruction, index) => (
+            <Text key={index}>
+              {index + 1}. {instruction}
+            </Text>
+          ))}
+        </View>
+        <Divider style={styles.Divider} />
+        <ScrollView>
           <View
             style={{
               flex: 1,
               justifyContent: "flex-end",
               alignItems: "flex-end",
               backgroundColor: "#f00",
+              gap: 10,
             }}
           >
             <View style={styles.attachmentAll}>
@@ -92,75 +152,51 @@ export default function Homework() {
                 <Text style={styles.pdfText}>hh2.golden.exe</Text>
                 <Ionicons name="cloud-download" size={25} color={"#fff"} />
               </TouchableOpacity>
-              {/* <Image source={hexImage} style={styles.img} resizeMode="cover" /> */}
-
               <TouchableOpacity style={styles.attachment}>
                 <Text style={styles.pdfText}>HxDSetup.zip</Text>
                 <Ionicons name="cloud-download" size={25} color={"#fff"} />
               </TouchableOpacity>
             </View>
-            <View style={styles.attachmentAll}>
-              <View style={styles.attachment}>
-                <Image
-                  source={profileImg}
-                  style={styles.img1}
-                  resizeMode="contain"
-                />
-                <Text style={styles.pdfText}>hh2.golden.exe</Text>
-                <Ionicons name="cloud-download" size={25} color={"#fff"} />
-              </View>
-              {/* <Image source={hexImage} style={styles.img} resizeMode="cover" /> */}
-
-              <View style={styles.attachment}>
-                <Text style={styles.pdfText}>HxDSetup.zip</Text>
-                <Ionicons name="cloud-download" size={25} color={"#fff"} />
-              </View>
-            </View>
-            {/* <View
-              style={{
-                backgroundColor: "#0ff",
-                flexDirection: "row",
-              }}
-            >
-              <Image
-                source={profileImg}
-                style={styles.img1}
-                resizeMode="contain"
-              />
-              <Image
-                source={profileImg}
-                style={styles.img1}
-                resizeMode="contain"
-              />
-            </View> */}
           </View>
-        </View>
-      </ScrollView>
-      <Divider style={styles.Divider} />
-
+        </ScrollView>
+      </View>
       <ScrollView>
         <View>
           <Text style={styles.attachmentTitle}>Миний оруулсан</Text>
-          {enteredTexts.map((text, index) => (
-            <View style={styles.message}>
-              <View style={styles.profileContainer}>
-                <Image
-                  source={profileImg}
-                  style={styles.img}
-                  resizeMode="contain"
-                />
-                <Text style={styles.enteredTexts} key={index}>
-                  {text}
-                </Text>
+          {enteredTexts.length > 0 ? (
+            enteredTexts.map((text, index) => (
+              <View style={styles.message} key={index}>
+                <View style={styles.profileContainer}>
+                  <Image
+                    source={profileImg}
+                    style={styles.img}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.enteredTexts}>{text}</Text>
+                </View>
+                <TouchableOpacity onPress={() => handleDelete(index)}>
+                  <Ionicons name="close" size={25} color={"#822315"} />
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity onPress={() => handleDelete(index)}>
-                <Ionicons name="close" size={25} color={"#822315"} />
-              </TouchableOpacity>
+            ))
+          ) : (
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "start",
+                alignItems: "center",
+                paddingVertical: 100,
+              }}
+            >
+              <Image
+                source={emptyState}
+                style={styles.img2}
+                resizeMode="contain"
+              />
             </View>
-          ))}
+          )}
         </View>
       </ScrollView>
-
       <KeyboardAvoidingView
         behavior={Platform.OS === "android" ? "height" : "padding"}
         style={styles.inputContainer}
@@ -186,10 +222,11 @@ export default function Homework() {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   profileContainer: { flexDirection: "row" },
   enteredTexts: { fontSize: 16, paddingLeft: 10 },
-
+  inputContainer: { backgroundColor: "#f0f" },
   message: {
     borderBlockColor: "rgba(130, 35, 33, 255)",
     borderRadius: 10,
@@ -211,7 +248,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 10,
   },
-  img1: { width: 150, height: 150, marginTop: 10, backgroundColor: "#fff" },
+  img1: {
+    width: 40,
+    height: 40,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+  },
+  img2: { height: 100, width: 100, marginBottom: -50, zIndex: 2 },
 
   topContainer: {
     flexDirection: "row",
@@ -292,6 +335,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 10,
     borderRadius: 10,
+  },
+  attachmentImg: {
+    flex: 1,
+    backgroundColor: "rgba(130,35,33,255)",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderRadius: 10,
+    paddingRight: 10,
   },
   pdfText: { color: "white" },
   Divider: { marginVertical: 10 },

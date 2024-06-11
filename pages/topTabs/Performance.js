@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollView, View } from "react-native";
-import DropdownList from "../DropdownList";
+import DropdownList from "./components/DropdownList";
 
 const Performance = ({ navigation }) => {
   const list = [
